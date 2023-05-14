@@ -16,10 +16,13 @@ public class MyHashTable<K, V> {
     private int M = 11;
     private int size;
     public MyHashTable(){
-
+        //the default constructor with the default size of 11
+        chainArray = new HashNode[M];
     }
     public MyHashTable(int M){
-
+        //the constructor takes an integer and sets M to the give value
+        this.M = M;
+        chainArray = new HashNode[M];
     }
     private int hash(K key){
 
