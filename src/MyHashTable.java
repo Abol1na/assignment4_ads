@@ -89,8 +89,20 @@ public class MyHashTable<K, V> {
         }
         return null;
     }
+    //determines whether a particular value exists within the hash table or not
     public boolean contains(V value){
-
+        //involves traversing through every linked list that is stored in the hash table and verifying by inspecting each node
+        // if the given value is present in each node of the linked list.
+        for(int i = 0; i < M; i++) {
+            HashNode<K, V> head = chainArray[i];
+            while (head != null) {
+                if(head.value.equals(value)) { //checks if the value field of the node is equal to the given value
+                    return true;
+                }
+                head = head.next;
+            }
+        }
+        return false;
     }
     public K getKey(V value){
 
