@@ -25,7 +25,10 @@ public class MyHashTable<K, V> {
         chainArray = new HashNode[M];
     }
     private int hash(K key){
-
+        //calculate the hash code for a provided key and then return the index that corresponds to the resulting hash code
+        int hashCode = key.hashCode();
+        int index = Math.abs(hashCode) % M;
+        return index;
     }
     public void put(K key, V value){
 
