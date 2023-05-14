@@ -30,6 +30,7 @@ public class MyHashTable<K, V> {
         int index = Math.abs(hashCode) % M;
         return index;
     }
+    //involves either inserting a new key-value pair into a collection or modifying the value associated
     public void put(K key, V value){
         int index = hash(key);
         HashNode<K, V> head = chainArray[index];
@@ -49,6 +50,7 @@ public class MyHashTable<K, V> {
         chainArray[index] = newNode;
         size++;
     }
+    //describes the action of retrieving the value that is associated with a particular key in a hash table
     public V get(K key){
         int index = hash(key);
         HashNode<K, V> head = chainArray[index];
@@ -63,8 +65,29 @@ public class MyHashTable<K, V> {
 
         return null;
     }
-    public V remove(K key) {
+    // remove a key-value pair from the hash table
+    public V remove(K key){
+        int index = hash(key);
+        HashNode<K, V> head = chainArray[index];
+        HashNode<K, V> prev = null;
 
+        //If the key is found, the associated value is removed from the linked list and returned,
+        // and the size of the hash table is decreased by 1
+        while(head != null) {
+            if (head.key.equals(key)) {
+                if (prev == null) {
+                    chainArray[index] = head.next;
+                }
+                else{
+                    prev.next = head.next;
+                }
+                size--;
+                return head.value;
+            }
+            prev = head;
+            head = head.next;
+        }
+        return null;
     }
     public boolean contains(V value){
 
