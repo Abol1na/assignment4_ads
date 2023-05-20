@@ -131,5 +131,19 @@ public class MyHashTable<K, V> {
             System.out.println("Bucket " + i + ": " + sizes[i]);
         }
     }
+    public void remove(K key, V oldvalue, V newValue) {
+        int index = hash(key);
+        HashNode node = chainArray[index];
+        while (node != null) {
+            if (node.value.equals(oldvalue)) {
+                node.value = newValue;
+                break;
+            }
+            if (!node.value.equals(oldvalue)) {
+                System.err.println("it   is not value of this hashtable");
+                break;
+            }
+            node = node.next;
+        }
+    }
 }
-
